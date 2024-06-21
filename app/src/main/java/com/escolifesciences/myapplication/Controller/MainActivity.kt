@@ -1,5 +1,6 @@
 package com.escolifesciences.myapplication.Controller
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.widget.Adapter
@@ -32,7 +33,14 @@ class MainActivity : AppCompatActivity() {
         val rvCategories = findViewById<RecyclerView>(R.id.rvCategories)
 
 //        lvAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, DataService.categories)
-        rvAdapter = CategoryRecyclerAdapter(this, DataService.categories)
+        rvAdapter = CategoryRecyclerAdapter(
+            this,
+            DataService.categories
+        ) { category ->
+            val productIntent = Intent(this, ProductActivity::class.java)
+            productIntent.putExtra("category", category.title)
+            startActivity(productIntent)
+        }
 
         rvCategories.adapter = rvAdapter
 

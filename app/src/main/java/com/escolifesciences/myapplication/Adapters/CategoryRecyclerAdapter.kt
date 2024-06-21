@@ -13,9 +13,13 @@ import com.escolifesciences.myapplication.R
 
 class CategoryRecyclerAdapter(
     val context: Context,
-    val categories: List<Category>
+    val categories: List<Category>,
+    val onCategoryClick : (Category) -> Unit
 ) : RecyclerView.Adapter<CategoryRecyclerAdapter.Holder>() {
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class Holder(
+        itemView: View,
+        val onCategoryClick: (Category) -> Unit
+    ) : RecyclerView.ViewHolder(itemView) {
         val imgCategory = itemView.findViewById<ImageView>(R.id.imgCategory)
         val txtCategory = itemView.findViewById<TextView>(R.id.txtCategory)
 
@@ -24,6 +28,7 @@ class CategoryRecyclerAdapter(
 
             imgCategory.setImageResource(resourceId)
             txtCategory.text = category.title
+            itemView.setOnClickListener { onCategoryClick(category) }
         }
     }
 
@@ -31,7 +36,7 @@ class CategoryRecyclerAdapter(
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_categories, parent, false)
 
-        return Holder(view)
+        return Holder(view, onCategoryClick)
     }
 
     override fun getItemCount(): Int {
