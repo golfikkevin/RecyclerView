@@ -22,12 +22,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.004" />
 
-    <ListView
-        android:id="@+id/lvCategories"
-        android:layout_width="409dp"
-        android:layout_height="686dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
+        android:layout_width="0dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:divider="@null"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
